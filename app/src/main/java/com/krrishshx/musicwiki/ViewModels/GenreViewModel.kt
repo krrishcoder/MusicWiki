@@ -14,14 +14,14 @@ class GenreViewModel(val repo: GenreRepo):ViewModel(){
    init{
 
       viewModelScope.launch(IO) {
-          repo.getGenreList(1)
+          repo.getGenreList(1)          //telling repo to load data
       }
 
     }
 
 
     val genre :LiveData<TopGenreList>
-        get() = repo.Genre
+        get() = repo.Genre               //getting data from repo
 
 
 }
