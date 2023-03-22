@@ -25,7 +25,7 @@ import com.krrishshx.musicwiki.repos.GenreRepo
 
 class Genre_one : AppCompatActivity() {
 
-    lateinit var binding: ActivityGenreOneBinding
+    lateinit var binding:  ActivityGenreOneBinding
     lateinit var vm:Genre_one_ViewModel
 
     lateinit var conectionLiveData : NetwokConnectivityObserver
@@ -60,9 +60,7 @@ class Genre_one : AppCompatActivity() {
         conectionLiveData.observe(this){
             if(it){
 
-
                 Log.d("debug::","network is 1  ${it.toString()}")
-
                 vm.netwok_status.postValue("1")
                 vm.flag1=1
                 vm.TAG.postValue(vm.TAG.value)
@@ -84,14 +82,6 @@ class Genre_one : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-
-
-
         var vpadapter = ViewPagerMyAdapterOne(this,this,vm)
         binding.viewPager.adapter = vpadapter
 
@@ -106,7 +96,7 @@ class Genre_one : AppCompatActivity() {
 
 
         vm.genre_Info.observe(this, Observer {
-            binding.tvSummaryOfGenre.text = it.tag.wiki.summary.toString()
+            binding.tvSummaryOfGenre.text =  vm.removeLinks( it.tag.wiki.summary.toString())
         })
 
 

@@ -65,7 +65,7 @@ list_my_top_artist = ArrayList<TopArtist_a>()
 
             for(item in it.topartists.artist){
                 Log.d("debug::","21 tag top artist 2nd  --> = ${item.name}")
-                list_my_top_artist.add(TopArtist_a("not working",item.name))
+                list_my_top_artist.add(TopArtist_a(item.image.get(2).text,item.name))
             }
             Log.d("debug::","21 tag top artist 2nd size  --> = ${list_my_top_artist.size}")
             adapter_artist.setData(list_my_top_artist)
@@ -109,6 +109,7 @@ list_my_top_artist = ArrayList<TopArtist_a>()
     override fun onItemClick(position: Int, v: View?) {
           var intent = Intent(mContext, Artist_activity::class.java)
            intent.putExtra("artist",list_my_top_artist.get(position).name)
+           intent.putExtra("img",list_my_top_artist.get(position).img)
            startActivity(intent)
 
     }

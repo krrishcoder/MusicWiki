@@ -10,13 +10,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_bg"
         tools:context=".Genre_one">
 
         <TextView
+            android:fontFamily="@font/baloo_bhai"
             android:id="@+id/tv_genre_title"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Genre"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -25,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_summary_of_genre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_summary_of_genre"
             app:tabBackground="@color/cardview_shadow_end_color"
             app:tabGravity="fill"
+            app:tabTextColor="#75FFFFFF"
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="#3F51B5"

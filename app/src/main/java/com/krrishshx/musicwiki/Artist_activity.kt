@@ -32,7 +32,7 @@ import com.krrishshx.musicwiki.repos.GenreRepo
 
 class Artist_activity : AppCompatActivity() , rv_adapter_genres.OnItemClickListener , rv_adapter_top_albums.OnItemClickListenerx , rv_adapter_top_tracks.OnItemClickListenery{
 
-    lateinit var binding:ActivityArtistBinding
+    lateinit var binding: ActivityArtistBinding
     lateinit var vm:ArtistViewModel
     private val adapter_genre by lazy { rv_adapter_genres(this,this) }
 
@@ -106,13 +106,11 @@ class Artist_activity : AppCompatActivity() , rv_adapter_genres.OnItemClickListe
 
         conectionLiveData.observe(this){
             if(it){
-                Log.d("debug::","network is 1  ${it.toString()}")
                 vm.flag1=1
                 //  vm.TAG.postValue(vm.TAG.value)
                 vm.ARTIST.postValue(vm.ARTIST.value)
 
             } else{
-                Log.d("debug::","network is 0 ${it.toString()}")
                 vm.flag1=0
                 if(vm.flag1==0){
                     Toast.makeText(this,"no network", Toast.LENGTH_SHORT).show()
@@ -122,11 +120,10 @@ class Artist_activity : AppCompatActivity() , rv_adapter_genres.OnItemClickListe
         }
 
 
-
         vm.Artist_info_LiveData.observe(this, Observer {
-            binding.tvPlaycountArtist.text = it.artist.stats.playcount.toString()
-            binding.tvFollowersArtist.text = it.artist.stats.listeners.toString()
-            binding.tvDescArtist.text = it.artist.bio.summary.toString()
+            binding.tvPlaycountArtist.text =  vm.getNumberInFormat(it.artist.stats.playcount.toInt())
+            binding.tvFollowersArtist.text = vm.getNumberInFormat(it.artist.stats.listeners.toInt())
+            binding.tvDescArtist.text =  vm.removeLinks(it.artist.bio.summary.toString())
         })
 
         vm.Artist_info_LiveData.observe(this, Observer {
@@ -141,36 +138,25 @@ class Artist_activity : AppCompatActivity() , rv_adapter_genres.OnItemClickListe
 
         vm.Artist_top_tracks_live_data.observe(this, Observer {
 
-
-
             for(item in it.toptracks.track){
-              list_my_tracks.add(TopTrack_a("not working",item.name,item.artist.name))
+              list_my_tracks.add(TopTrack_a(item.image.get(2).text,item.name,item.artist.name))
             }
             Log.d("debug::","testing in artist tracks size -- > ${list_my_tracks.size}")
-
             adapter_tracks.setData(list_my_tracks)
 
-        //    binding.lvTopTracksInArtist.adapter = ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,arr_top_track)
 
         })
 
         vm.Artist_top_album_live_data.observe(this, Observer {
 
-
             for(item in it.topalbums.album){
-                Log.d("debug::","testing in artist --> top tracks name = ${item.name} and artist = ${item.artist.name}")
-                list_my_album.add(TopAlbums_a("not working",item.name,item.artist.name))
+                list_my_album.add(TopAlbums_a(item.image.get(2).text,item.name,item.artist.name))
             }
 
-            Log.d("debug::","testing in artist -- > ${list_my_album.size}")
             adapter_album.setData(list_my_album)
 
-         //   binding.lvTopAlbumsInArtist.adapter = ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,arr_top_album)
 
         })
-
-        Log.d("debug::"," artist---0-- ")
-
 
 
 
@@ -194,13 +180,15 @@ class Artist_activity : AppCompatActivity() , rv_adapter_genres.OnItemClickListe
 
     override fun onItemClickx(position: Int, v: View?) {
         var intent = Intent(this,Album_activity::class.java)
+        Log.d("debug::","clicked on top album inside artist ")
 
-            intent.putExtra("artist",vm.artistx)
+            intent.putExtra("artist",list_my_album.get(position).artist)
             intent.putExtra("album",list_my_album.get(position).title)
+            intent.putExtra("img",list_my_album.get(position).img)
 
             startActivity(intent)
 
-            Log.d("debug::","clicked on top album inside artist ")
+
     }
 
     override fun onItemClicky(position: Int, v: View?) {

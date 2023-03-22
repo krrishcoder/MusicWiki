@@ -17,6 +17,15 @@ class AlbumViewModel (val repo: GenreRepo): ViewModel(){
     var flag1 = 0
     var NAME = MutableLiveData<String>()
     var ARTIST =  MutableLiveData<String>()
+    var IMG = MutableLiveData<String>()
+
+
+    fun removeLinks(str:String) :String{
+        var inde = str.indexOf("<a href=")
+
+        var result = str.substring(0,inde)
+        return result
+    }
 
 
     fun getAlbumInfo(album:String,artist:String) {

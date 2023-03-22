@@ -69,28 +69,14 @@ class TopAlbumsFragment(var mContext:Context,var vm:Genre_one_ViewModel) : Fragm
             for(item in it.albums.album){
                 Log.d("debug:","21 tag --> ${item.artist.name}")
 
-                list_my_top_album.add(TopAlbums_a("not working",item.name,item.artist.name ))
+                list_my_top_album.add(TopAlbums_a(item.image.get(2).text,item.name,item.artist.name ))
 
-               // testing.add(item.artist.name)
-               // testing1.add(item.name)
-               // list_my_top_album.add(TopAlbums_a("xx","xx",item.artist.name))
+
             }
             Log.d("debug:","21 size == ${list_my_top_album.size}")
              adapter_album.setData(list_my_top_album)
         })
 
-     //       binding.lvTopAlbum.adapter = ArrayAdapter<String>(mContext,android.R.layout.simple_expandable_list_item_1,testing)
-
-//            binding.lvTopAlbum.setOnItemClickListener { parent, view, position, id ->
-//
-//                var intent = Intent(mContext,Album_activity::class.java)
-//
-//                intent.putExtra("artist",testing.get(position))
-//                intent.putExtra("album",testing1.get(position))
-//
-//                startActivity(intent)
-//
-//            }
 
 
 
@@ -103,6 +89,7 @@ class TopAlbumsFragment(var mContext:Context,var vm:Genre_one_ViewModel) : Fragm
         var intent = Intent(mContext,Album_activity::class.java)
         intent.putExtra("artist",list_my_top_album.get(position).artist)
         intent.putExtra("album",list_my_top_album.get(position).title)
+        intent.putExtra("img",list_my_top_album.get(position).img)
 
         startActivity(intent)
 

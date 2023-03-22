@@ -10,12 +10,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_bg"
         tools:context=".Artist_activity">
 
         <ImageView
-            android:id="@+id/iv_album_activity"
+            android:id="@+id/iv_artist_activity"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/music"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,41 +25,47 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_playcount_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:text="Play count"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_album_activity" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_artist_activity" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo_bhai"
             android:text="Playcount"
+            android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_playcount_artist"
             app:layout_constraintStart_toStartOf="@+id/tv_playcount_artist"
             app:layout_constraintTop_toBottomOf="@+id/tv_playcount_artist" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_followers_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:text="Followers"
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_album_activity" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_artist_activity" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
+            android:fontFamily="@font/baloo_bhai"
             android:text="Followers"
+            android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_followers_artist"
             app:layout_constraintStart_toStartOf="@+id/tv_followers_artist"
@@ -68,7 +75,9 @@
             android:id="@+id/tv_title_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo_bhai"
             android:text="title"
+            android:textColor="@color/white"
             android:textSize="27dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,9 +94,10 @@
             android:id="@+id/tv_desc_artist"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="artist description will be here"
+            android:textColor="@color/white"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -118,7 +128,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:fontFamily="@font/baloo_bhai"
             android:text="TOP TRACKS"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +151,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:fontFamily="@font/baloo_bhai"
             android:text="TOP ALBUMS"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

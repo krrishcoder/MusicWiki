@@ -23,6 +23,13 @@ class Genre_one_ViewModel (val repo: GenreRepo): ViewModel(){
     fun callToNetwork(){
 
     }
+    fun removeLinks(str:String) :String{
+       var inde = str.indexOf("<a href=")
+
+       var result = str.substring(0,inde)
+        return result
+    }
+
 
     fun getGenreInfo(tag:String) {
 

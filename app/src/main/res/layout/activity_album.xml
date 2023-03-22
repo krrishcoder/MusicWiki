@@ -10,13 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_bg"
         tools:context=".Album_activity">
 
         <ImageView
             android:id="@+id/iv_album_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/music"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -24,34 +25,40 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+
+            android:layout_marginStart="10dp"
             android:id="@+id/tv_title_album_activity"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="title"
+            android:fontFamily="@font/baloo_bhai"
+            android:text="titlesdrggesrtryhsertyretyhretshdfghgg"
+            android:textColor="@color/white"
             android:textSize="27dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_genres_album_activity" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
             android:id="@+id/rv_genres_album_activity"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="70dp"
-            app:layout_constraintTop_toBottomOf="@+id/iv_album_activity"
-            tools:layout_editor_absoluteX="0dp" />
-
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_album_activity" />
 
 
         <TextView
             android:id="@+id/tv_artistInfo_album_activity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="artist info will be here"
-            android:textSize="10dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"

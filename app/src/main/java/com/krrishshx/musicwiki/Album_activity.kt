@@ -24,6 +24,7 @@ import com.krrishshx.musicwiki.api.RetrofitHelper
 import com.krrishshx.musicwiki.databinding.ActivityAlbumBinding
 import com.krrishshx.musicwiki.network.NetwokConnectivityObserver
 import com.krrishshx.musicwiki.repos.GenreRepo
+import com.squareup.picasso.Picasso
 
 class Album_activity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener  {
     lateinit var binding:ActivityAlbumBinding
@@ -57,6 +58,7 @@ class Album_activity : AppCompatActivity(), rv_adapter_genres.OnItemClickListene
 
         vm.NAME.postValue(intent.getStringExtra("album")!!)
         vm.ARTIST.postValue(intent.getStringExtra("artist")!!)
+        vm.IMG.postValue(intent.getStringExtra("img")!!)
 
         binding.rvGenresAlbumActivity.adapter = adapter_genre
         binding.rvGenresAlbumActivity.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
@@ -91,6 +93,7 @@ class Album_activity : AppCompatActivity(), rv_adapter_genres.OnItemClickListene
             }
             binding.tvTitleAlbumActivity.text = it.toString()
 
+            Picasso.get().load(vm.IMG.value).placeholder(R.drawable.music).into(binding.ivAlbumActivity)
 
         })
 
@@ -110,7 +113,7 @@ class Album_activity : AppCompatActivity(), rv_adapter_genres.OnItemClickListene
 
         vm.Album_Artist_info_LiveData.observe(this, Observer {
             Log.d("debug::","album  artist information---------> ${it.toString()}")
-            binding.tvArtistInfoAlbumActivity.text = it.artist.bio.summary.toString()
+            binding.tvArtistInfoAlbumActivity.text = vm.removeLinks(it.artist.bio.summary.toString())
         })
 
 

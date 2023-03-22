@@ -53,6 +53,7 @@
                 android:id="@+id/tv_welcome_message"
                 android:layout_width="280dp"
                 android:layout_height="63dp"
+                android:fontFamily="@font/baloo_bhai"
                 android:padding="5dp"
                 android:paddingEnd="30dp"
                 android:text="Welcome!!Without music, life would be a blank to me."
@@ -67,13 +68,13 @@
                 app:layout_constraintVertical_bias="1.0" />
 
 
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo_bhai"
                 android:text="Select Genre"
-                android:textColor="#0981E1"
+                android:textColor="#EE4499DD"
                 android:textSize="23dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,10 +84,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="15dp"
             android:id="@+id/rv_genres"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:paddingBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="36dp"
+            android:fontFamily="@font/baloo_bhai"
             android:text="click to expand"
             android:textColor="#E4DCDC"
             android:textSize="17dp"

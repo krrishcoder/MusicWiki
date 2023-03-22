@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
 
     lateinit var genreViewModel: GenreViewModel
     lateinit var binding: ActivityMainBinding
-    lateinit var adapter_geners:rv_adapter_genres
     lateinit var list:ArrayList<Tag>
     lateinit var conectionLiveData : NetwokConnectivityObserver
 
@@ -44,12 +44,6 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
         super.onCreate(savedInstanceState)
        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-
-
-
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val w: Window = window
             w.setFlags(
@@ -59,7 +53,7 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
 
         }
         //from here we will access to view models
-
+/////////////////////////////////! NETWORK HANDLER ////////////////////////////////////////////////////////////
         conectionLiveData = NetwokConnectivityObserver(this)
 
         conectionLiveData.observe(this){
@@ -78,33 +72,23 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
             }
         }
 
-
-
-
-
-//
-//        genreViewModel.isNetworkAvail.observe(this, Observer {
-//            Log.d("debug::","network is ${it.toString()}")
-//        })
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
 
-
-
-
-
-
-
-
+///////////////////////////////////!! VIEW MODEL//////////////////////////////////////////////////////////
         val genreService = RetrofitHelper.getInstance().create(GenreService::class.java)
-
         val repo = GenreRepo(genreService)
-//
         genreViewModel = ViewModelProvider(this,GenreViewModelFactory(repo)).get(GenreViewModel::class.java)
-//
+
+   //========================================OBSERVERS============================================================================
+
+
+
+
         binding.rvGenres.adapter = adapter
         binding.rvGenres.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
 
@@ -124,27 +108,56 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
                }
 
            }
-
             adapter.setData(top_genre_list)
-
-
-
 
         })
 
 
+        genreViewModel.click_on_expand_text.observe(this, Observer {
+            binding.tvExpand.text = it.toString()
+        })
+
 
         binding.tvExpand.setOnClickListener {
 
-            Log.d("debug:","click to expand")
-            var top_genre = ArrayList<String>()
+if(this::list.isInitialized) {
+    Log.d("debug:", "click to expand")
+
+    binding.ivExpand.animate().apply {
+        duration=1000
+        rotationXBy(180f)
+    }
 
 
-            for(item in list) {
-                top_genre.add(item.name.toString())
-            }
 
-            adapter.setData(top_genre)
+    var top_genre = ArrayList<String>()
+if(genreViewModel.click_on_expand_text.value.equals("click to expand")){
+    for (item in list) {
+        top_genre.add(item.name.toString())
+    }
+    genreViewModel.DoOnExpandClick(1)
+}else{
+    var pp=10
+    for (item in list) {
+        top_genre.add(item.name.toString())
+        pp--
+        if(pp==0){
+            break
+        }
+    }
+    genreViewModel.DoOnExpandClick(0)
+
+}
+    adapter.setData(top_genre)
+}
+        }
+
+
+        binding.constraintLayout.setOnClickListener {
+            binding.imageView.animate().apply {
+                duration = 1000
+                rotationYBy(180f)
+            }.start()
         }
 
 
@@ -157,9 +170,6 @@ class MainActivity : AppCompatActivity(), rv_adapter_genres.OnItemClickListener 
         if(v !=null){
             var tv = v?.findViewById<TextView>(R.id.tv_genre_text) as TextView
             Log.d("debug:"," ${tv.text.toString()}")
-
-            tv.background = getDrawable(R.drawable.after_click_genre)
-
             val intent = Intent(this@MainActivity,Genre_one::class.java)
             intent.putExtra("tag",tv.text.toString())
             startActivity(intent)

@@ -17,7 +17,12 @@ import kotlinx.coroutines.launch
 class GenreViewModel(val repo: GenreRepo):ViewModel(){
 
 
+    var click_on_expand_text = MutableLiveData<String>()
+
+
    fun callToNetwok(){
+
+       click_on_expand_text.postValue("click to expand")
 
       viewModelScope.launch(IO) {
           repo.getGenreList(1)          //telling repo to load data
@@ -31,6 +36,14 @@ class GenreViewModel(val repo: GenreRepo):ViewModel(){
 
    }
 
+    fun DoOnExpandClick(i:Int) {
+        if(i==1){
+            click_on_expand_text.postValue("click to hide")
+        }else{
+            click_on_expand_text.postValue("click to expand")
+        }
+
+    }
 
 
     val genre :LiveData<topGenre>

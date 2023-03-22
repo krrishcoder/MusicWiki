@@ -67,8 +67,8 @@ var tagx =""
 
 
             for(item in it.tracks.track){
-                Log.d("debug::","21 tag top track 2nd  --> = ${item.name} and ${item.artist.name}")
-                list_my_top_tracks.add(TopTrack_a("not working",item.name, item.artist.name))
+                Log.d("debug::","21 tag top track 2nd  --> = ${item.image.get(2).text} ${item.name} and ${item.artist.name}")
+                list_my_top_tracks.add(TopTrack_a(item.image.get(1).text,item.name, item.artist.name))
             }
             Log.d("debug::","21 tag track 3rd size  --> = ${list_my_top_tracks.size}")
 
