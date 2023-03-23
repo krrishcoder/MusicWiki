@@ -19,4 +19,11 @@ assumptions --> minimum SDK should be equal and greater than KITKAT VERSION.
                The user if connected to internet should have data and intenet speed should be capable of image loading.
                No internect connection will be handled by CONNECTIVITY SERVICE.
                
+decisions -->   was confused to choose the version of viewmodel lifecycle  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'            
+               bcoz The latest version  Giving Runtime error of having duplicate classes , than i show at internet but nothing worked , but at looking
+               to my previous learning apps , i decresed the version of viewmodel dependency than it all worked better without any error.
+               whether to reuse the recycler adapter or not.   which flag to use was really confusing for the activity which was my intent and it was also
+               the activity which was recently visited , so i must have to clear the TASK STACK , so that app don't crashes out of memory . so i cleard
+               all the previous activity as User has recahed to Home Screen.
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
              
