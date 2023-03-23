@@ -25,5 +25,8 @@ decisions -->   was confused to choose the version of viewmodel lifecycle  imple
                whether to reuse the recycler adapter or not.   which flag to use was really confusing for the activity which was my intent and it was also
                the activity which was recently visited , so i must have to clear the TASK STACK , so that app don't crashes out of memory . so i cleard
                all the previous activity as User has recahed to Home Screen.
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP.
+                : i thought to make the app completly covering the screen even the status bar , so i set NO LIMITS TO LAYOUT.
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
              
